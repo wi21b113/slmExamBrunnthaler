@@ -1,6 +1,7 @@
 package at.technikum.slmexambrunnthaler;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -18,5 +19,10 @@ public class DateTimeController {
     @GetMapping("/api/now")
     public String timeNow(){
         return LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    }
+
+    @GetMapping("/api/now")
+    public String timeByFormat(@RequestParam int hour, @RequestParam int minutes, @RequestParam int second) {
+        return LocalTime.now().format(DateTimeFormatter.ofPattern(hour + ":" + minutes + ":" + second));
     }
 }
